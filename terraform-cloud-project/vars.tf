@@ -65,7 +65,7 @@ variable "ZONE-c" {
   default = "eu-cenral-1c"
 }
 
-variable "VpcCIDR" {
+variable "Vpc_CIDR" {
   default = "172.21.0.0/16"
 }
 
