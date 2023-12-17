@@ -44,3 +44,51 @@ variable "dbuser" {
 variable "dbname" {
   default = "accounts"
 }
+
+variable "instance_count" {
+  default = "1"
+}
+
+variable "VPC_NAME" {
+  default = "Project-VPC"
+}
+
+variable "ZONE-a" {
+  default = "eu-central-1a"
+}
+
+variable "ZONE-b" {
+  default = "eu-central-1b"
+}
+
+variable "ZONE-c" {
+  default = "eu-cenral-1c"
+}
+
+variable "VpcCIDR" {
+  default = "172.21.0.0/16"
+}
+
+variable "PubSub-1" {
+  default = "172.21.1.0/24"
+}
+
+variable "PubSub-2" {
+  default = "172.21.2.0/24"
+}
+
+variable "PubSub-3" {
+  default = "172.21.3.0/24"
+}
+
+variable "PrivSub-1" {
+  default = "172.21.4.0/24"
+}
+
+variable "PrivSub-2" {
+  default = "172.21.5.0/24"
+}
+
+variable "PrivSub-3" {
+  default = "172.21.6.0/24"
+}
