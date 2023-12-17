@@ -6,7 +6,7 @@ variable "AMI" {
   type = map(any)
   default = {
     eu-central-1 = "ami-06dd92ecc74fdfb36"
-    eu-west-1 = "ami-0694d931cee176e7d"
+    eu-west-1    = "ami-0694d931cee176e7d"
   }
 }
 variable "PUB_KEY_PATH" {
