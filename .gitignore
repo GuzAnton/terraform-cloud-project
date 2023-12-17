@@ -1,2 +1,4 @@
 test
 test.pub
+.terraform
+vars.tf

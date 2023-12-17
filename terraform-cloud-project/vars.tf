@@ -24,3 +24,23 @@ variable "USERNAME" {
 variable "MyIp" {
   default = "176.36.180.171/32"
 }
+
+variable "rmquser" {
+  default = "rabbit"
+}
+
+variable "rmqpass" {
+  default = "addmiin122112"
+}
+
+variable "dbpass" {
+  default = "admin123"
+}
+
+variable "dbuser" {
+  default = "admin"
+}
+
+variable "dbname" {
+  default = "accounts"
+}
