@@ -62,7 +62,7 @@ variable "ZONE-b" {
 }
 
 variable "ZONE-c" {
-  default = "eu-cenral-1c"
+  default = "eu-central-1c"
 }
 
 variable "Vpc_CIDR" {
