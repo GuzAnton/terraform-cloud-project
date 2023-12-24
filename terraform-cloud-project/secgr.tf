@@ -1,5 +1,5 @@
-resource "aws_security_group" "Project_beanstalk_elb_sg" {
-  name        = "Project_bs_elb_sg"
+resource "aws_security_group" "project-beanstalk-elb-sg" {
+  name        = "project-bs-elb-sg"
   description = "Security group for beanstack_elb"
   vpc_id      = module.VPC.vpc_id
   egress {
@@ -16,8 +16,8 @@ resource "aws_security_group" "Project_beanstalk_elb_sg" {
   }
 }
 
-resource "aws_security_group" "Project_Bastion_sg" {
-  name        = "Project_Bastion_Sg"
+resource "aws_security_group" "project-bastion-sg" {
+  name        = "project-bastion-sg"
   description = "Security group for Bastion Host"
   vpc_id      = module.VPC.vpc_id
   egress {
@@ -34,8 +34,8 @@ resource "aws_security_group" "Project_Bastion_sg" {
   }
 }
 
-resource "aws_security_group" "Project_prod_sg" {
-  name        = "EC2-SG"
+resource "aws_security_group" "project-prod-sg" {
+  name        = "project-prod-sg"
   description = "Security group for ec2"
   vpc_id      = module.VPC.vpc_id
   egress {
@@ -48,12 +48,12 @@ resource "aws_security_group" "Project_prod_sg" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = [aws_security_group.Project_Bastion_sg.id]
+    security_groups = [aws_security_group.project-bastion-sg.id]
   }
 }
 
-resource "aws_security_group" "Project_backend_sg" {
-  name        = "Project_backend_sg"
+resource "aws_security_group" "project-backend-sg" {
+  name        = "project-backend-sg"
   description = "Security group for backend resources(RDS,active MQ, elastic cache)"
   vpc_id      = module.VPC.vpc_id
   egress {
@@ -66,15 +66,15 @@ resource "aws_security_group" "Project_backend_sg" {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    security_groups = [aws_security_group.Project_prod_sg.id]
+    security_groups = [aws_security_group.project-prod-sg.id]
   }
 }
 
-resource "aws_security_group_rule" "Project_InboundTraffic_rule" {
+resource "aws_security_group_rule" "project-inboundtraffic-rule" {
   type                     = "ingress"
   from_port                = 0
-  to_port                  = 65536
+  to_port                  = 65535
   protocol                 = "tcp"
-  security_group_id        = aws_security_group.Project_backend_sg.id
-  source_security_group_id = aws_security_group.Project_backend_sg.id
+  security_group_id        = aws_security_group.project-backend-sg.id
+  source_security_group_id = aws_security_group.project-backend-sg.id
 }

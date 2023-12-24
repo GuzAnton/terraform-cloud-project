@@ -5,7 +5,7 @@ variable "REGION" {
 variable "AMI" {
   type = map(any)
   default = {
-    eu-central-1 = "ami-06dd92ecc74fdfb36"
+    eu-central-1 = "ami-0faab6bdbac9486fb"
     eu-west-1    = "ami-0694d931cee176e7d"
   }
 }
@@ -50,7 +50,7 @@ variable "instance_count" {
 }
 
 variable "VPC_NAME" {
-  default = "Project-VPC"
+  default = "project-VPC"
 }
 
 variable "ZONE-a" {

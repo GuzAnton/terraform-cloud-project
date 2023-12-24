@@ -1,7 +1,7 @@
-resource "aws_elastic_beanstalk_environment" "Project-env-prod" {
-  name                = "Project-env-prod"
-  application         = aws_elastic_beanstalk_application.Project-app.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.3.15 running Tomcat 8.5 Corretto 11"
+resource "aws_elastic_beanstalk_environment" "project-env-prod" {
+  name                = "project-env-prod"
+  application         = aws_elastic_beanstalk_application.project-prod.name
+  solution_stack_name = "64bit Amazon Linux 2023 v5.1.2 running Tomcat 9 Corretto 11"
   cname_prefix        = "project-bean-prod-domain"
   setting {
     name      = "VPCId"
@@ -11,7 +11,7 @@ resource "aws_elastic_beanstalk_environment" "Project-env-prod" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
-    value     = "aws-elasticbenstalk-ec2-role"
+    value     = "aws-elasticbeanstalk-ec2-role"
   }
   setting {
     namespace = "aws:ec2:vpc"
@@ -21,12 +21,12 @@ resource "aws_elastic_beanstalk_environment" "Project-env-prod" {
   setting {
     namespace = "aws:ec2:vpc"
     name      = "Subnets"
-    value     = join(",", [module.VPC.private_subnets[0]], module.VPC.private_subnets[1], module.VPC.private_subnets[2])
+    value     = join(",", [module.VPC.private_subnets[0], module.VPC.private_subnets[1], module.VPC.private_subnets[2]])
   }
   setting {
     namespace = "aws:ec2:vpc"
     name      = "ELBSubnets"
-    value     = join(",", module.VPC.public_subnets[0], module.VPC.public_subnets[1], module.VPC.public_subnets[2])
+    value     = join(",", [module.VPC.public_subnets[0], module.VPC.public_subnets[1], module.VPC.public_subnets[2]])
   }
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
@@ -111,12 +111,12 @@ resource "aws_elastic_beanstalk_environment" "Project-env-prod" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "SecurityGroups"
-    value     = aws_security_group.Project_prod_sg.id
+    value     = aws_security_group.project-prod-sg.id
   }
   setting {
     namespace = "aws:elbv2:loadbalancer"
     name      = "SecurityGroups"
-    value     = aws_security_group.Project_beanstalk_elb_sg.id
+    value     = aws_security_group.project-beanstalk-elb-sg.id
   }
-  depends_on = [aws_security_group.Project_beanstalk_elb_sg, aws_security_group.Project_prod_sg]
+  depends_on = [aws_security_group.project-beanstalk-elb-sg, aws_security_group.project-prod-sg]
 }
