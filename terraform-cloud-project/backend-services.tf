@@ -9,9 +9,6 @@ resource "aws_db_subnet_group" "Project_RDS_subgr" {
 resource "aws_elasticache_subnet_group" "Project_Elasticcache_subgr" {
   name       = "Project elastic cache"
   subnet_ids = [module.VPC.private_subnets[0], module.VPC.private_subnets[1], module.VPC.private_subnets[2]]
-  tags = {
-    Name = "Project Elasticcache subgroup"
-  }
 }
 
 resource "aws_db_instance" "Project_RDS" {
