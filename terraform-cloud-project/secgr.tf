@@ -68,6 +68,12 @@ resource "aws_security_group" "project-backend-sg" {
     protocol        = "-1"
     security_groups = [aws_security_group.project-prod-sg.id]
   }
+  ingress {
+    from_port       = 3306
+    protocol        = "tcp"
+    to_port         = 3306
+    security_groups = [aws_security_group.project-bastion-sg.id]
+  }
 }
 
 resource "aws_security_group_rule" "project-inboundtraffic-rule" {
